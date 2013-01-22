@@ -1,0 +1,34 @@
+<p>Listado de usuarios</p>
+<table class="table">
+<tr>
+    <th>Email</th>
+    <th>Nombre</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($users as $user) : //acceso directo a la variable $albums carga en la action ?>
+<tr>
+    <td><?php // We always use the escapeHtml() view helper to help protect ourselves from XSS vulnerabilities.
+              echo $this->escapeHtml($user->email);?></td>
+    <td><?php echo $this->escapeHtml($user->nombre);?></td>
+</tr>
+<?php endforeach; ?>
+</table>
+<p><span style="text-decoration: underline">Tabla UsuarioRol</span><br /><?php 
+
+            //var_dump($roles);echo '<br /><br /><br />';
+    
+            foreach ($roles as  $userRol) {
+                //esta para accecer directamente al ResultsetObject
+                echo 'Id usuario '.$userRol->id_user.' Rol : '.$userRol->rol.' Fecha : '.$userRol->fecha.'<br >';
+            //    //esta para acceder a un ResultSetHidratado con mi clase UsuarioRol este resultset crea un objeto por cada row encontrada en la consulta
+            //    echo 'Id usuario '.$userRol->getIdUser().' Rol : '.$userRol->getRol().' Fecha : '.$userRol->getFecha().'<br >';
+            }
+
+        ?>
+    </p>
+    <?php  
+    //method escapeHtml()? It’s actually a view helper, and it’s designed to help mitigate XSS attacks
+            echo $x.'<br />';
+            echo 'id:'.$id.' <br />';
+            var_dump($auth); 
+    ?>

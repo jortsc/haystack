@@ -1,0 +1,119 @@
+<?php echo $this->doctype(); ?>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Desarrollo web, ZendFramework, zf2, jQuery, JavaScript">
+        <meta name="keywords" content="Desarrollo web, ZendFramework, zf2, jQuery, JavaScript">
+        <?php 
+         echo $this->headTitle($this->translate('HayStack, a lot of things!'))->setSeparator(' - ')->setAutoEscape(false);
+         echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ;
+         echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/icon_rounded.png'))
+                        ->prependStylesheet($this->basePath() . '/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/css/style_f.css');
+         echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                                 ->prependFile($this->basePath() . '/js/jquery.js') 
+              //echo $this->content; 
+             //echo $this->url('home') 
+             //echo $this->translate('All rights reserved.') 
+         ?>
+        <script type="text/javascript">
+           jQuery(document).ready(function(){
+               jQuery('#searcher').val('Buscar en HayStack. . .');
+               jQuery('#searcher').click(function(){
+                   if(jQuery('#searcher').val() == 'Buscar en HayStack. . .'){
+                       jQuery('#searcher').val('');
+                   }
+               });
+               jQuery('#searcher').blur(function(){
+                    if(jQuery('#searcher').val() == ''){
+                       jQuery('#searcher').val('Buscar en HayStack. . .');
+                   }
+               });
+           });
+       </script>
+    </head>
+    <body>
+		<div id="container">
+			<header id="header">
+                            <a href="<?php echo $this->url('home');?>"><img style="width:235px;height:60px;" src="<?php echo $this->basePath();?>/img/haystack_f.png" /></a>
+			</header>
+			<nav id="menu"  class="rounded">
+				<ul class="nav">
+					<li><a href="<?php echo $this->url('home');?>" class="rounded">Inicio</a></li>
+					<li><a href="#" class="rounded">Curriculum</a></li>
+					<li><a href="<?php echo $this->url('home'); ?>home/contact" class="rounded">Contacto</a></li>
+				</ul>
+                            <form action="#" method="POST">
+                                 <ul class="search" style="list-style: none;">
+					<li>
+						<input type="text" id="searcher" class="searchinput rounded" /> 
+                                                <input type="button" value="Buscar" id="searchsubmit" class="searchsubmit  rounded" />
+                                                <div class="clear"></div>
+					</li>
+				</ul>
+                            </form>
+				<div class="clear"></div>
+			</nav>
+			<div class="content">
+                             <section id="seccion">
+                                 <?php echo $this->content;
+                                        $children = $this->viewModel()->getCurrent()->getChildren();
+
+                                        $child = $children[0];
+                                        foreach ($child->author as $author) 
+                                        {
+                                            break;
+                                        }
+                                 ?>
+                             </section>
+				<aside id="leftbar" class="rounded">
+                                    <div class="about">
+                                        <h3 class="about_title">Sobre <?php echo $author->getNombre();?></h3> 
+                                        <img class="author_img rounded" src="<?php echo $this->basePath().$author->getImg();?>">
+                                        <p>
+                                            <?php echo $author->getDescription();?>
+                                        </p>
+                                        <div class="clear"></div>
+                                   </div>
+                                   <div class="about">
+                                       <h3 class="about_title">Por secciones</h3>
+                                       <div class="setcions">
+                                           <ul>
+                                               <li><a href="#" class="rounded">Geek</a></li>
+                                               <li><a href="#" class="rounded">Zend Framework</a></li>
+                                               <li><a href="#" class="rounded">jQuery</a></li>
+                                               <li><a href="#" class="rounded">HTML5</a></li>
+                                               <li><a href="#" class="rounded">CSS3</a></li>
+                                           </ul>
+                                       </div>
+                                   </div>
+                                    <div class="about">
+                                        <h3 class="about_title">Enlaces</h3>
+                                        <ul>
+                                            <li><a href="#">GitHub</a></li>
+                                            <li><a href="#">Google+</a></li>
+                                            <li><a href="#">LinkedIn</a></li>
+                                       </ul>
+                                 </div>
+                                    <div class="about_title"></div>
+                                    <figure class="logos">
+                                        <a href="framework.zend.com/manual/2.0/en/index.html">
+                                            <img class="img_medium rounded" src="img/zf2.png" />
+                                        </a>
+                                            <figcaption></figcaption>
+				    </figure>
+                                    <figure class="logos">
+                                        <a href="http://jquery.com/">
+                                            <img class="img_m rounded" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcScXNot80T4kN9DwUjuiCiV5ZV877yLd7bP7-VR75dcyNm8R1LWbQ" />
+                                        </a>  
+                                    </figure>
+                                    
+                            </aside>
+                            <div class="clear"></div>
+			</div>
+			<footer id="foot" class="rounded">
+				<small>&copy;2012 My personal blog - Designed and performed by <span class="by">Jose Manuel Orts</span><span class="tech"> with ZF2, jQuery, HTML5 and CSS3</span></small>
+			</footer>
+		</div>
+	</body>
+</html>

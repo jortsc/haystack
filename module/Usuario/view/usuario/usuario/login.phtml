@@ -1,0 +1,35 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+$title = 'Bienvenido, identifiquese para continuar';
+$this->headTitle($title);
+?>
+<h1 class="page_title"><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+   <?php //url() view helper is provided by Zend Framework 2 and is used to create the links we need
+                   //The first parameter to url() is the route name we wish to use for construction of the URL,
+                   // and the second parameter is an array of all the variables to fit into the placeholders to use
+              //$this->url('usuario', array('action'=>'add'));?> 
+</p>
+
+
+<div id="login_srv" class="login_content rounded" style="display: block">
+    <div id="inline_content">
+        <div class="wrapp">
+           <?php
+            $form = $this->form;
+            $form->setAttribute('action', $this->url('usuario', array('action' => 'login')));
+            $form->prepare();
+
+            echo $this->form()->openTag($form);
+            echo $this->formHidden($form->get('id'));
+            echo $this->formRow($form->get('email'));
+            echo $this->formRow($form->get('pass'));
+            echo $msg?'<p class="error_msg">'.$msg.'</p>':'';
+            echo $this->formSubmit($form->get('submit'));
+            echo $this->form()->closeTag();
+           ?>
+            <a class="ajax" href="#"><span class="spn-forget" >¿Olvidó su contraseña?</span></a>
+        </div>
+        
+    </div>
+</div>
