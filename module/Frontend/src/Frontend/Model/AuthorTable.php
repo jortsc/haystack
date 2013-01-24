@@ -18,6 +18,6 @@ class AuthorTable
     }   
     public function fetchAll() 
     {
-        return $this->authorTableGateway->select();
+        return $this->authorTableGateway->select()->current();
     }
 }

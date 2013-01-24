@@ -8,10 +8,26 @@ use Frontend\Model\Author;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\Sql\Sql;
+use Zend\Mvc\MvcEvent;
 
 
 class Module
 {
+    
+    public function onBootstrap($evt)
+    {
+        $eventManager        = $evt->getApplication()->getEventManager();
+        $eventManager->attach('dispatch', array($this, 'loadAuthorData' ));
+    }
+    
+    public function loadAuthorData(MvcEvent $evt) 
+    {
+        $controller = $evt->getTarget();
+        $sm = $evt->getApplication()->getServiceManager(); 
+        $author = $sm->get('Author\Model\AuthorTable');
+        $controller->layout()->author = $author->fetchAll();
+    }
+
     public function getAutoloaderConfig()
     {
         return array(

@@ -1,43 +1,27 @@
 <?php foreach ($publications as $publi): ?>
-    <article>
+<article style="">
         <header>
         <h1><?php echo $publi->getTitle();?></h1>
         </header>
-        <p><?php echo $publi->getContent();?></p>
-
-<!--        <div class="code rounded">
-                <p>
-                <span class="code_comment">// $view is a PhpRenderer instance</span>
-                <span class="code_comment">// Via the plugin broker:</span>
-                <span class="code_line">$broker = $view->getBroker();</span>
-                <span class="code_line">$helper = $broker->load('lowercase');</span>
-                </p>
-                <p>
-                <span class="code_comment">// Retrieve the helper instance, via the method "plugin",</span>
-                <span class="code_comment">// which proxies to the plugin broker:</span>
-                <span class="code_line">$helper = $view->plugin('lowercase');</span>
-                </p><p>
-                <span class="code_comment">// If the helper does not define __invoke(), the following also retrieves it:</span>
-                <span class="code_line">$helper = $view->lowercase();</span>
-                </p><p>
-                <span class="code_comment">// If the helper DOES define __invoke, you can call the helper</span>
-                <span class="code_comment">// as if it is a method:</span>
-                <span class="code_line">$filtered = $view->lowercase('some value');</span>
-                </p>
-        </div>-->
-<!--        <figure>
-                 <img src="http://minkbooks.com/content/myimage.jpg"> 
-                <figcaption>
-                        Esta es la imagen del primer mensaje 
-                </figcaption>
-        </figure>-->
+        <?php echo $publi->getContent();?>
         <footer>
                 <p>
                     <small>
-                        <time datetime="2011-12-10" pubdate>publicado 10-12-2011</time>
-                        - comentarios (0) - Social networks() - More of comment()
+                        <time datetime="2011-12-10" pubdate>Publicado 10-12-2011</time>
+                         - <a href="#" class="comment" id="<?php echo $publi->getId(); ?>">Comentar</a> - <a href="" class="done" id="<?php echo $publi->getId(); ?>">Comentarios</a> (<?php echo $comments = 0; ?>)
                     </small>
                 </p>
         </footer>
+     <div class="comment_done rounded" id="done<?php echo $publi->getId(); ?>" >
+        <p>Listado de comentarios para este post</p>
+    </div>
+    <div class="comments rounded" id="coment<?php echo $publi->getId(); ?>" style="border: 1px solid #CCCCCC;">
+        <form>
+            <div class="send_comment"><input type="submit" class="rounded" value="Comentar" /></div>
+            <span><label><span class="remark">*</span>Nonbre:</label><input type="text" class="name rounded" /></span> 
+            <span><label><span class="remark">*</span>Email:</label><input type="text" class="email rounded" /></span>
+            <textarea class="content rounded"></textarea>
+        </form>
+    </div>
     </article>
 <?php endforeach; ?>
