@@ -1,21 +1,22 @@
-<?php foreach ($publications as $publi): ?>
-<article style="">
+ <?php foreach ($publications as $publi): ?>
+<article>
         <header>
         <h1><?php echo $publi->getTitle();?></h1>
         </header>
         <?php echo $publi->getContent();?>
-        <footer>
-                <p>
+       <footer><!--        <div class="tooltip_container"> <div class="tootip_info" id="footerf<?php //echo $publi->getId(); ?>">tooltip!!</div></div>-->
+    <div style="position: relative;"><p>
                     <small>
-                        <time datetime="2011-12-10" pubdate>Publicado 10-12-2011</time>
-                         - <a href="#" class="comment" id="<?php echo $publi->getId(); ?>">Comentar</a> - <a href="" class="done" id="<?php echo $publi->getId(); ?>">Comentarios</a> (<?php echo $comments = 0; ?>)
+                        <span>Publicado 10-12-2011</span>
+                        - <a href="" title="Pulsa para dejar un comentario" class="comment" id="g<?php echo $publi->getId(); ?>">Comentar</a> - <a href="" class="done" title="Pulsa para ver los comentarios de este artículo" id="d<?php echo $publi->getId(); ?>">Comentarios</a> (<?php echo $comments = 0; ?>)
                     </small>
                 </p>
+                </div> 
         </footer>
-     <div class="comment_done rounded" id="done<?php echo $publi->getId(); ?>" >
+     <div class="comment_done rounded" id="doned<?php echo $publi->getId(); ?>" >
         <p>Listado de comentarios para este post</p>
     </div>
-    <div class="comments rounded" id="coment<?php echo $publi->getId(); ?>" style="border: 1px solid #CCCCCC;">
+    <div class="comments rounded" id="comentg<?php echo $publi->getId(); ?>" style="border: 1px solid #CCCCCC;">
         <form>
             <div class="send_comment"><input type="submit" class="rounded" value="Comentar" /></div>
             <span><label><span class="remark">*</span>Nonbre:</label><input type="text" class="name rounded" /></span> 
@@ -25,3 +26,9 @@
     </div>
     </article>
 <?php endforeach; ?>
+<script type="text/javascript">
+   $(function() {
+        $(".comment").tooltip({});   
+        $(".done").tooltip({});   
+   });
+</script>
